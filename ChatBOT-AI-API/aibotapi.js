@@ -8,6 +8,8 @@ import cors from "cors";
 import express from "express";
 import { Configuration, OpenAIApi } from "openai";
 import dotenv from 'dotenv';
+import fetch from "node-fetch";
+
 const config = dotenv.config();
 console.log('CHAT-BOT AI API KEY : ' + process.env.API_TOKEN);
 const configuration = new Configuration({
