@@ -5,9 +5,11 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class MessageService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   sendMessage(message: string) {
-    return this.http.post('http://localhost:3000/message', { prompt: message });
+    //return this.http.post('http://localhost:3000/message', { prompt: message });
+    return this.http.post('https://chatpdfaibot.onrender.com/message', { prompt: message });
+    //https://chatpdfaibot.onrender.com/ -- CHANGED
   }
 }

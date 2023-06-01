@@ -25,8 +25,12 @@ export class AiserviceService {
     queryParams = queryParams.append("searchTxt", searchTxt);
     queryParams = queryParams.append("url", pdfUrl);
     return this.http
-      .get(
+      /* .get(
         'http://localhost:3000/qaurl', { params: queryParams }
+      ); */
+      //https://chatpdfaibot.onrender.com/ -- CHANGED
+      .get(
+        'https://chatpdfaibot.onrender.com/qaurl', { params: queryParams }
       );
     //-----------------------------------------------
   }

@@ -328,7 +328,7 @@ export class UploaderComponent implements OnInit, OnDestroy {
     this.condition = 'mydisable';
     this.loading = true;
 
-    this.aiservice.aiServiceToGetSearchResults(pdfUrl, searchTxt).subscribe((data: any) => {
+    this.aiservice.aiServiceToGetSearchResults('', pdfUrl, searchTxt).subscribe((data: any) => {
       console.log(data);
       console.log(data.output_text);
       this.displayResult = data.output_text;
