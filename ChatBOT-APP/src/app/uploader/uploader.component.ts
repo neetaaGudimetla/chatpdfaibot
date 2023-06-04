@@ -20,6 +20,8 @@ declare var swal: any;
 })
 export class UploaderComponent implements OnInit, OnDestroy {
 
+  displayAttachResult: any;
+  printflg: boolean = false;
   filteredStatus: any;
   optionHighlight: any;
   highlight = '';
@@ -31,7 +33,7 @@ export class UploaderComponent implements OnInit, OnDestroy {
   isHovering: boolean;
   files: File[] = [];
   //--------------
-  displayResult = '';
+  displayResult: any;
   options = [];
   searchTxt: string = '';
   constructor(
@@ -184,9 +186,14 @@ export class UploaderComponent implements OnInit, OnDestroy {
 
   //---------------------- FOR TESTING ---------------------------
   searchInPdf() {
+    const collection = document.getElementsByClassName("card-text");
+    collection[0].innerHTML = "";
+    this.nodatafound = false;
     this.displayResult = '';
+    this.displayAttachResult = '';
     this.testMockPromise();
   }
+  //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
   mockPromise(filename: any, value: any, pdfUrl: any, searchTxt: any) {
     this.optionHighlight = value;
     this.highlight = 'highlight';
@@ -212,7 +219,8 @@ export class UploaderComponent implements OnInit, OnDestroy {
         this.condition = '';
         this.loading = false;
         this.nodatafound = false;
-        res("done : " + value);
+        ////res("done : " + value);
+        res(this.displayResult);
       }, (err: any) => {
         this.errorToastMsg(filename + ' - [ Failed ]');
         console.log('ERROR RETURNED : ' + JSON.stringify(err));
@@ -220,7 +228,9 @@ export class UploaderComponent implements OnInit, OnDestroy {
         this.optionHighlight = -1;
         this.condition = '';
         this.loading = false;
-        res("done : " + value);
+        ////res("done : " + value);
+        this.displayResult = this.displayResult + '';
+        res(this.displayResult);
         if (this.displayResult != '') {
           this.nodatafound = false;
         } else {
@@ -231,8 +241,81 @@ export class UploaderComponent implements OnInit, OnDestroy {
       //--------------------------------
     });
   }
+  //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+  mockPromiseXX(i: any, filename: any, value: any, pdfUrl: any, searchTxt: any) {
+    this.optionHighlight = value;
+    this.highlight = 'highlight';
+
+    console.log('value : ' + value);
+    console.log('pdfUrl : ' + pdfUrl);
+    console.log('filename : ' + filename);
+    console.log('searchTxt : ' + searchTxt);
+    console.log('iiiiiiiiiiiiiiii : ' + i);
+
+    this.condition = 'mydisable';
+    this.loading = true;
+
+    return new Promise(async (res, rej) => {
+      if (i === 0) {
+        setTimeout(() => {
+          this.displayResult = this.displayResult + '\n\n' + `
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut ante sem. Pellentesque faucibus elit non mattis fringilla. Duis nisi elit, fermentum sit amet suscipit a, imperdiet viverra arcu. Donec non condimentum lectus, et bibendum nisi. Nullam accumsan mauris ultrices justo bibendum fringilla. Suspendisse volutpat nisi in condimentum tincidunt. Vivamus ultricies eleifend ipsum, et pharetra turpis mattis at. Pellentesque pharetra, metus in ultrices dapibus, nibh risus eleifend tellus, ut pharetra tortor risus id dolor. Pellentesque et scelerisque augue. Aenean tristique felis fermentum malesuada aliquam. Sed vel eros risus. Nam non augue blandit, elementum purus ut, ullamcorper ex.
+          `;
+          this.highlight = '';
+          this.optionHighlight = -1;
+          this.condition = '';
+          this.loading = false;
+          this.nodatafound = false;
+          res(this.displayResult);
+        }, 3000);
+      }
+      if (i === 1) {
+        setTimeout(() => {
+          this.displayResult = this.displayResult + '\n\n' + `
+          Proin sit amet pulvinar quam, vel varius felis. In pretium tincidunt diam et pharetra. Nulla ullamcorper tellus ut sem tincidunt, eget semper sem finibus. Phasellus vitae dignissim ipsum. Mauris leo nulla, scelerisque ac lectus sed, fringilla gravida felis. Suspendisse potenti. Ut nisi diam, dapibus sit amet convallis eu, sollicitudin non velit. Sed dictum dui erat, vitae iaculis libero dignissim ac.
+          `;
+          this.highlight = '';
+          this.optionHighlight = -1;
+          this.condition = '';
+          this.loading = false;
+          this.nodatafound = false;
+          res(this.displayResult);
+        }, 3000);
+      }
+      //--------------------------------
+      /*  this.aiservice.aiServiceToGetSearchResults(filename, pdfUrl, searchTxt).subscribe((data: any) => {
+         this.successToastMsg(filename + ' - [ Success ]');
+         console.log(data);
+         console.log(data.output_text);
+         //this.displayResult = this.displayResult + '+++\n\n+++' + data.output_text;
+         this.displayResult = this.displayResult + '\n\n' + data.output_text;
+         this.highlight = '';
+         this.optionHighlight = -1;
+         this.condition = '';
+         this.loading = false;
+         this.nodatafound = false;
+         res("done : " + value);
+       }, (err: any) => {
+         this.errorToastMsg(filename + ' - [ Failed ]');
+         console.log('ERROR RETURNED : ' + JSON.stringify(err));
+         this.highlight = '';
+         this.optionHighlight = -1;
+         this.condition = '';
+         this.loading = false;
+         res("done : " + value);
+         if (this.displayResult != '') {
+           this.nodatafound = false;
+         } else {
+           this.nodatafound = true;
+         }
+
+       }); */
+      //--------------------------------
+    });
+  }
 
   async testMockPromise() {
+    this.displayAttachResult = '';
 
     if (this.selectedOptions.length === 0) {
       console.log('Please select atleast one file.');
@@ -254,9 +337,24 @@ export class UploaderComponent implements OnInit, OnDestroy {
       this.optionHighlight = -1;
       console.log(this.options[this.selectedOptions[i]].name.substring(20));
       this.warningToastMsg(this.options[this.selectedOptions[i]].name.substring(20) + ' - [ Processing... ]');
-      console.log(await this.mockPromise(this.options[this.selectedOptions[i]].name.substring(20), this.options[this.selectedOptions[i]].value, this.options[this.selectedOptions[i]].url, this.searchTxt));
+      //console.log(await this.mockPromise(this.options[this.selectedOptions[i]].name.substring(20), this.options[this.selectedOptions[i]].value, this.options[this.selectedOptions[i]].url, this.searchTxt));
+      //--await this.mockPromise(this.options[this.selectedOptions[i]].name.substring(20), this.options[this.selectedOptions[i]].value, this.options[this.selectedOptions[i]].url, this.searchTxt);
+      this.displayAttachResult = '';
+      this.displayResult = await this.mockPromise(this.options[this.selectedOptions[i]].name.substring(20), this.options[this.selectedOptions[i]].value, this.options[this.selectedOptions[i]].url, this.searchTxt);
+      console.log('FOR VALUE OF i : ' + i + ' --> ' + this.displayResult);
+      this.displayResult = this.displayResult + '\n\n';
     }
+    this.printflg = true;
+    this.displayAttachResult = this.displayResult;
     console.log("final");
+    console.log('this.displayAttachResult :: ' + this.displayAttachResult);
+    //------------------------
+    if (this.printflg) {
+      const collection = document.getElementsByClassName("card-text");
+      collection[0].innerHTML = "";
+      this.typeText(collection[0], this.displayAttachResult);
+    }
+    //------------------------
   }
   //-------------------------------------------------------------------
   async searchInPdfOld() {
@@ -668,5 +766,23 @@ export class UploaderComponent implements OnInit, OnDestroy {
     // ie: 2014-03-24, 3:00 PM
     time = yyyy + '-' + mm + '-' + dd + ', ' + h + ':' + min + ' ' + ampm;
     return time;
+  }
+  testAI() {
+    const collection1 = document.getElementsByClassName("card-text");
+    collection1[0].innerHTML = "";
+    let parsedData = `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`;
+    this.typeText(collection1[0], parsedData);
+  }
+  typeText(element, text) {
+    let index = 0;
+
+    let interval = setInterval(() => {
+      if (index < text.length) {
+        element.innerHTML += text.charAt(index);
+        index++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 20);
   }
 }

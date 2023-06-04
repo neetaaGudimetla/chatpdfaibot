@@ -1,5 +1,7 @@
 <div [ngClass]="condition" style="height: 100%vh">
-  <div class="titleCls">Utility to Upload PDF Files & Search in PDF</div>
+  <div class="titleCls" style="font-size: 2.25rem">
+    Utility to Upload PDF Files & Search in PDF
+  </div>
   <div
     class="dropzone"
     dropzone
@@ -58,7 +60,7 @@
       </ul>
       <!-- <br /> -->
       <ul
-        class="list-group container"
+        class="list-group"
         style="height: auto; max-height: 300px; overflow-x: hidden"
       >
         <li
@@ -67,7 +69,7 @@
           class="row align-items-center justify-content-center list-group-item"
         >
           <div
-            class="col-md-6 col-sm-12"
+            class="col-md-5"
             style="text-align: left; font-size: 15px; color: #a1a1e7"
           >
             <label>
@@ -82,17 +84,17 @@
               {{ option.name | slice : 20 }}
             </label>
           </div>
-          <div class="col-md-3  col-sm-12">
-            <span style="text-align: center; font-size: 15px; color: #bc9f69"
+          <div class="col-md-3" style="text-align: left">
+            <span style="font-size: 15px; color: #bc9f69"
               >[ {{ option.uploadedDtTm }} ]</span
             >
           </div>
           <div
-            class="col-md-3 col-sm-12"
+            class="col-md-4"
             style="text-align: right; font-size: 20px; color: red"
           >
             <div class="row">
-              <div class="col-md-10  col-xs-10" style="border: 1px solid navy1">
+              <div class="col-md-10 col-xs-10" style="border: 1px solid navy1">
                 <a [href]="option.url" target="_blank" rel="noopener"
                   ><span
                     class="glyphicon glyphicon-eye-open buttonx"
@@ -101,11 +103,13 @@
                   ></span
                 ></a>
               </div>
-              <div class="col-md-2  col-xs-2" style="border: 1px solid navy1">
+              <div
+                class="col-md-2 col-xs-2"
+                style="border: 1px solid navy1; text-align: left"
+              >
                 <span
                   (click)="deleteFile(option.name, option.url, option.id)"
                   class="glyphicon glyphicon-trash buttonx"
-                  style="text-align: right"
                   aria-hidden="true"
                 ></span>
               </div>
@@ -203,8 +207,34 @@
       ></span>
     </button>
     <br /><br />
+    <!--  <button class="btn btn-success btn-lg buttonx" (click)="testAI()">
+      TEST AI
+    </button> -->
+    <!-- {{ printflg }} -->
   </div>
-  <div class="card" *ngIf="displayResult != ''">
+  <!--  <p
+    id="messageDiv"
+    class="card-text"
+    style="padding-top: 10px; color: #6d6dc1; font-size: 16px"
+  >
+    {{ displayResult }}
+  </p> -->
+  <!--   <div class="card" *ngIf="displayResult != ''">
+    <div class="card-body">
+      <h3 class="card-title" style="padding-top: 10px; color: #6fef58">
+        AI-BOT Result
+      </h3>
+      <p id="messageDiv"
+        class="card-text"
+        style="padding-top: 10px; color: #6d6dc1; font-size: 16px"
+      >
+        {{ displayResult }}
+      </p>
+    </div>
+  </div> -->
+  <!-- <div class="card" *ngIf="displayResult != ''"> -->
+  <!-- <div class="card" *ngIf="printflg"> -->
+  <div class="card">
     <div class="card-body">
       <h3 class="card-title" style="padding-top: 10px; color: #6fef58">
         AI-BOT Result
@@ -213,9 +243,8 @@
         class="card-text"
         style="padding-top: 10px; color: #6d6dc1; font-size: 16px"
       >
-        {{ displayResult }}
+        {{ displayAttachResult }}
       </p>
-      <!-- <p class="card-text" style="padding-top: 10px;color:#6d6dc1;font-size: 20px;">kljkj lkjklj ;lkj;lkj ;lkj;lk j;lkj ;lkj</p> -->
     </div>
   </div>
 
@@ -240,7 +269,7 @@
       <div class="col-md-12">
         <span
           class="animated infinite flipInX"
-          style="color: navy; font-size: 20px"
+          style="color: navy; font-size: 2rem"
           >Processing...</span
         >
         <div class="loader">

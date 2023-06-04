@@ -11,7 +11,7 @@ export class AiserviceService {
 
   constructor(private http: HttpClient) { }
 
-  aiServiceToGetSearchResults(filename:any,pdfUrl: any, searchTxt: any) {
+  aiServiceToGetSearchResults(filename: any, pdfUrl: any, searchTxt: any) {
     console.log('aiServiceToGetSearchResults');
     console.log(pdfUrl);
     console.log(filename);
@@ -25,9 +25,9 @@ export class AiserviceService {
     queryParams = queryParams.append("searchTxt", searchTxt);
     queryParams = queryParams.append("url", pdfUrl);
     return this.http
-      /* .get(
-        'http://localhost:3000/qaurl', { params: queryParams }
-      ); */
+      /*  .get(
+         'http://localhost:3000/qaurl', { params: queryParams }
+       ); */
       //https://chatpdfaibot.onrender.com/ -- CHANGED
       .get(
         'https://chatpdfaibot.onrender.com/qaurl', { params: queryParams }
