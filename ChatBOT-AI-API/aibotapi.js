@@ -255,7 +255,10 @@ app.post('/message', (req, res) => {
 //---------------------------
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'uploads/');
+        ////cb(null, 'uploads/');
+        const folderPath = path.resolve('./', 'uploads');
+        console.log('storage --- folderPath ---> : ' + folderPath);
+        cb(null, folderPath);
     },
     filename: function (req, file, cb) {
         console.log('MULTER STORAGE file : ' + JSON.stringify(file));
@@ -527,7 +530,7 @@ app.get('/deletefile', (req, res) => {
     const filePath = path.resolve('./', 'uploads', filename);
     console.log('deletefile --- filePath ---> : ' + filePath);
 
-    //USING THIS BEFORE
+    //USING THIS BEFORE - FOR LOCAL USE
     ////fs.unlink('uploads/' + filename, (err) => {
     //CHANGED
     fs.unlink(filePath, (err) => {
