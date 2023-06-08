@@ -72,9 +72,9 @@ export class AiserviceService {
     queryParams = queryParams.append("filename", filename);
     return this.http
       //~~~~~~~~~~~~~~~~~~~~ LOCAL LIVE ~~~~~~~~~~~~~~~~~~~~~~~~
-      /*  .get(
-         'http://localhost:3000/deletefile', { params: queryParams }
-       ); */
+      /* .get(
+        'http://localhost:3000/deletefile', { params: queryParams }
+      ); */
       .get(
         'https://chatpdfaibot.onrender.com/deletefile', { params: queryParams }
       );

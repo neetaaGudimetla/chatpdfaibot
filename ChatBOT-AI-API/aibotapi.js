@@ -14,6 +14,7 @@ import puppeteer from 'puppeteer';
 import { jsPDF } from 'jspdf';
 import fs from 'fs';
 import multer from 'multer';
+import * as path from 'path';
 
 /* TO RUN
 node aibotapi.js */
@@ -339,40 +340,6 @@ async function runQAUrlBlobMultiplePdf(query, filename) {
 }
 //---------------------------
 
-// Convert a Word document file to PDF
-/* async function convertWordToPDF(file) {
-    console.log('convertWordToPDF .. ' + file);
-    const loadingTask = pdfjsLib.getDocument(file);
-    console.log('yyyyyyyyyyyyyyyyyyy');
-    const pdfDocument = await loadingTask.promise;
-    console.log('nnnnnnnnnnnnnnnnnnnnn');
-    const numPages = pdfDocument.numPages;
-    console.log('1111111111111111111');
-
-    const doc = new pdfjsLib.Document();
-    console.log('222222222222');
-    for (let pageNum = 1; pageNum <= numPages; pageNum++) {
-        const page = await pdfDocument.getPage(pageNum);
-        const viewport = page.getViewport({ scale: 1 });
-        const canvasFactory = new pdfjsLib.NodeCanvasFactory();
-        const canvas = canvasFactory.create(viewport.width, viewport.height);
-        const ctx = canvas.getContext('2d');
-        const renderContext = {
-            canvasContext: ctx,
-            viewport: viewport,
-            canvasFactory: canvasFactory,
-        };
-        console.log('aaaaaaaaaaaaaaa');
-        await page.render(renderContext);
-        const imageData = canvas.toBuffer('image/png');
-        const img = new pdfjsLib.Image(imageData);
-        doc.addPage().addImage(img, 'PNG', { x: 0, y: 0, width: viewport.width, height: viewport.height });
-    }
-    console.log('33333333333333');
-
-    const pdfData = await doc.save();
-    return pdfData;
-} */
 //------------------------------------------------------
 async function convertWordToPDFNew(fileoriginalname) {
 
@@ -557,7 +524,13 @@ app.get('/deletefile', (req, res) => {
     const filename = req.query.filename;
     console.log('deletefile >> ' + filename);
 
-    fs.unlink('uploads/' + filename, (err) => {
+    const filePath = path.resolve('./', 'uploads', filename);
+    console.log('deletefile --- filePath ---> : ' + filePath);
+
+    //USING THIS BEFORE
+    ////fs.unlink('uploads/' + filename, (err) => {
+    //CHANGED
+    fs.unlink(filePath, (err) => {
         if (err) {
             console.error('deletefile --> ' + err);
             res.status(500).send('An error occurred while deleting the file.');
