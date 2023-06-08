@@ -1,0 +1,243 @@
+<div class="container" style="margin-top: 10px">
+  <div class="row">
+    <div class="titleCls col-10" style="font-size: 2.25rem">
+      <!--  Utility to Upload PDF Files & Search in PDF &nbsp; -->
+      Utility to Chat with Doc,Txt & Pdf files &nbsp;<br /><span
+        ><input
+          value="{{ backgroundColor1 }}"
+          (change)="themeColor1($event)"
+          type="color"
+      /></span>
+      &nbsp;<span
+        ><input
+          value="{{ backgroundColor2 }}"
+          (change)="themeColor2($event)"
+          type="color"
+      /></span>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="titleCls" style="font-size: 2.25rem">
+  Utility to Upload PDF Files & Search in PDF
+</div>
+ -->
+<!-- color 1111111111111111 -->
+<div
+  class="dropzone bcg"
+  [style.--bg-color1]="backgroundColor1"
+  [style.--bg-color2]="backgroundColor2"
+  dropzone
+  (hovered)="toggleHover($event)"
+  (dropped)="onDrop($event)"
+  [class.hovering]="isHovering"
+>
+  <!-- <div
+  class="dropzone"
+  [style.--bg-color1]="backgroundColor1"
+  [style.--bg-color2]="backgroundColor2"
+  dropzone
+  (hovered)="toggleHover($event)"
+  (dropped)="onDrop($event)"
+  [class.hovering]="isHovering"
+> -->
+  <h3>Firebase Storage Bucket</h3>
+  <p>Drag and Drop a File</p>
+  <div class="file">
+    <label class="file-label">
+      <!-- FOR SINGLE FILE UPLOAD -->
+      <!-- <input
+        id="file"
+        class="file-input"
+        type="file"
+        (change)="onDrop($event.target.files)"
+      /> -->
+      <!-- FOR SINGLE FILE UPLOAD -->
+      <!-- FOR MULTIPLE FILE UPLOAD -->
+      <input
+        [multiple]="true"
+        id="file"
+        class="file-input"
+        type="file"
+        (change)="onDropMulti($event.target.files)"
+      />
+      <!-- FOR MULTIPLE FILE UPLOAD -->
+      <!-- 4444444444444444 -->
+      <!-- <span class="file-cta bcg"> -->
+      <span
+        class="file-cta bcg"
+        [style.--bg-color1]="backgroundColor1"
+        [style.--bg-color2]="backgroundColor2"
+      >
+        <span class="file-icon">
+          <i class="fa fa-upload"></i>
+        </span>
+        <span class="file-label"> or choose a file… </span>
+      </span>
+    </label>
+  </div>
+</div>
+<!-- <input (change)="onFileSelected()" type="file" id="file" /> -->
+<div class="container">
+  <!-- XXXXXXXXXXXXXXXXXXXX NOT REQUIRED TO SEARCH FILE NAME XXXXXXXXXXXXXXXXX -->
+  <!--   <ul class="list-group">
+    <li style="list-style-type: none; margin-left: -15px">
+      <input
+        *ngIf="options.length > 0"
+        class="form-control"
+        style="width: 200px"
+        placeholder="Search File Name..."
+        type="text"
+        [(ngModel)]="filteredStatus"
+      />
+    </li>
+  </ul> -->
+  <!-- XXXXXXXXXXXXXXXXXXXX NOT REQUIRED TO SEARCH FILE NAME XXXXXXXXXXXXXXXXX -->
+  <ul
+    class="list-group"
+    style="height: auto; max-height: 300px; overflow-x: hidden"
+  >
+    <li
+      [ngStyle]="i === optionHighlight && { background: '#abf6ab' }"
+      *ngFor="let option of options | filter : filteredStatus; index as i"
+      class="row align-items-center justify-content-center list-group-item"
+    >
+      <div
+        class="col-md-6 col-xs-6"
+        style="text-align: left; font-size: 15px; color: #a1a1e7"
+      >
+        <label>
+          <!--  <input
+            class="buttonx"
+            type="checkbox"
+            name="options"
+            value="{{ option.url }}"
+            [(ngModel)]="option.checked"
+          /> -->
+          {{ option.name }}
+        </label>
+      </div>
+
+      <div
+        class="col-md-6 col-xs-6"
+        style="border: 1px solid navy1; text-align: right"
+      >
+        <!--         <a [href]="pdfSrc" target="_blank" rel="noopener">
+ -->
+        <span
+          (click)="onFileSelected(option.value, option)"
+          class="glyphicon glyphicon-eye-open buttonx"
+          style="text-align: center; color: purple; font-size: 2.5rem"
+          aria-hidden="true"
+        ></span>
+        <!--   <button (click)="openDocxContentInNewWindow()">
+          Open DOCX Content
+        </button> -->
+
+        <!-- </a> -->
+      </div>
+    </li>
+  </ul>
+  <!-- <br /> -->
+
+  <ul class="list-group align-items-center justify-content-center">
+    <li style="list-style-type: none; margin-left: -15px">
+      <!-- <input
+        placeholder="Enter your queries here..."
+        style="width: 200px"
+        class="form-control"
+        type="text"
+        [(ngModel)]="searchTxt"
+      /> -->
+      <!-- 22222222222222222222 -->
+      <!-- <textarea
+      style="display: flex;flex-direction:column;justify-content: center;align-items: center
+      ;text-align: left;"
+        placeholder="Enter your queries here..."
+        type="text"
+        [(ngModel)]="searchTxt"
+        class="form-control bcg"
+        rows="1"
+      > -->
+      <textarea
+        placeholder="Enter your queries here..."
+        type="text"
+        [(ngModel)]="searchTxt"
+        class="form-control txtAreaCls bcg"
+        [style.--bg-color1]="backgroundColor1"
+        [style.--bg-color2]="backgroundColor2"
+        rows="1"
+      >
+      </textarea>
+    </li>
+  </ul>
+</div>
+<div *ngIf="!loading">
+  <button class="btn btn-success btn-lg buttonx" (click)="searchInPdf()">
+    SearchPDF AI
+    <span
+      class="glyphicon glyphicon-send buttonx"
+      style="text-align: center; color: white"
+      aria-hidden="true"
+    ></span>
+  </button>
+</div>
+<!-- 33333333333333333333 -->
+<!-- <div class="card bcg"> -->
+<div
+  class="card bcg"
+  [style.--bg-color1]="backgroundColor1"
+  [style.--bg-color2]="backgroundColor2"
+>
+  <div class="card-body">
+    <!-- <h3 class="card-title" style="padding-top: 10px; color: #6fef58"> -->
+    <!-- <h3 class="card-title" style="padding-top: 10px; color: #b5c47c"> -->
+    <h3 class="card-title" style="margin-top: 15px; color: #232c05">
+      <p style="padding-top: 15px">AI-BOT Result</p>
+    </h3>
+    <p
+      class="card-text"
+      style="padding-top: 10px; color: #6d6dc1; font-size: 16px"
+    >
+      {{ displayAttachResult }}
+    </p>
+  </div>
+</div>
+
+<div *ngIf="loading">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <span
+          class="animated infinite flipInX"
+          style="color: navy; font-size: 2rem"
+          >Processing...</span
+        >
+        <div class="loader">
+          <div class="loader-inner box1"></div>
+          <div class="loader-inner box2"></div>
+          <div class="loader-inner box3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="nodatafound">
+  <button
+    class="btn btn-outline-success"
+    style="
+      font-weight: bold;
+      font-size: 18px;
+      padding: 20px;
+      color: red;
+      box-shadow: 5px 10px #888888;
+      background-image: linear-gradient(to right, #00ff26, yellow);
+    "
+  >
+    No Results Found!<br />
+    Please use
+    <span class="animated infinite flipInX" style="color: navy"
+      >'Need Help?'</span
+    >, option
+  </button>
+</div>
