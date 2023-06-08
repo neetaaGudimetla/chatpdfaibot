@@ -469,10 +469,10 @@ async function convertHtmlToPdf(html, filePath) {
     //executablePath: await chromiumExecutablePath(),
 
     const output = exec('which chromium-browser').toString().trim();
-    console.log('-------- CHROME PATH -------------> ' + output);
+    console.log('-------- CHROME PATH 111 -------------> ' + output.toString());
 
     const browser = await puppeteer.launch({
-        headless: true,
+        headless: 'new',
         userDataDir: '/opt/render/.cache/puppeteer',
         args: ['--no-sandbox']
     });

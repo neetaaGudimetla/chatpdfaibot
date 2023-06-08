@@ -1,4 +1,4 @@
-<div class="container" style="margin-top: 10px">
+<div class="container-fluid" style="margin-top: 10px">
   <div class="row">
     <div class="titleCls col-10" style="font-size: 2.25rem">
       <!--  Utility to Upload PDF Files & Search in PDF &nbsp; -->
@@ -78,87 +78,42 @@
   </div>
 </div>
 <!-- <input (change)="onFileSelected()" type="file" id="file" /> -->
-<div class="container">
-  <!-- XXXXXXXXXXXXXXXXXXXX NOT REQUIRED TO SEARCH FILE NAME XXXXXXXXXXXXXXXXX -->
-  <!--   <ul class="list-group">
-    <li style="list-style-type: none; margin-left: -15px">
-      <input
-        *ngIf="options.length > 0"
-        class="form-control"
-        style="width: 200px"
-        placeholder="Search File Name..."
-        type="text"
-        [(ngModel)]="filteredStatus"
-      />
-    </li>
-  </ul> -->
-  <!-- XXXXXXXXXXXXXXXXXXXX NOT REQUIRED TO SEARCH FILE NAME XXXXXXXXXXXXXXXXX -->
-  <ul
-    class="list-group"
-    style="height: auto; max-height: 300px; overflow-x: hidden"
-  >
+<div class="container-fluid align-items-center justify-content-center">
+  <ul class="list-group" style="overflow-x: hidden; margin-left: -6px">
     <li
       [ngStyle]="i === optionHighlight && { background: '#abf6ab' }"
       *ngFor="let option of options | filter : filteredStatus; index as i"
-      class="row align-items-center justify-content-center list-group-item"
+      class="align-items-center justify-content-center list-group-item bcg"
+      [style.--bg-color1]="backgroundColor1"
+      [style.--bg-color2]="backgroundColor2"
     >
-      <div
-        class="col-md-6 col-xs-6"
-        style="text-align: left; font-size: 15px; color: #a1a1e7"
-      >
-        <label>
-          <!--  <input
-            class="buttonx"
-            type="checkbox"
-            name="options"
-            value="{{ option.url }}"
-            [(ngModel)]="option.checked"
-          /> -->
-          {{ option.name }}
-        </label>
-      </div>
+      <div class="row">
+        <div
+          class="col-md-9 col-xs-9"
+          style="text-align: left; font-size: 1.4rem; color: #1515b0"
+        >
+          <label>
+            {{ option.name }}
+          </label>
+        </div>
 
-      <div
-        class="col-md-6 col-xs-6"
-        style="border: 1px solid navy1; text-align: right"
-      >
-        <!--         <a [href]="pdfSrc" target="_blank" rel="noopener">
- -->
-        <span
-          (click)="onFileSelected(option.value, option)"
-          class="glyphicon glyphicon-eye-open buttonx"
-          style="text-align: center; color: purple; font-size: 2.5rem"
-          aria-hidden="true"
-        ></span>
-        <!--   <button (click)="openDocxContentInNewWindow()">
-          Open DOCX Content
-        </button> -->
-
-        <!-- </a> -->
+        <div
+          class="col-md-3 col-xs-3"
+          style="border: 1px solid navy1; text-align: right"
+        >
+          <span
+            (click)="onFileSelected(option.value, option)"
+            class="glyphicon glyphicon-eye-open buttonx"
+            style="text-align: center; color: purple; font-size: 2.25rem"
+            aria-hidden="true"
+          ></span>
+        </div>
       </div>
     </li>
   </ul>
-  <!-- <br /> -->
 
-  <ul class="list-group align-items-center justify-content-center">
-    <li style="list-style-type: none; margin-left: -15px">
-      <!-- <input
-        placeholder="Enter your queries here..."
-        style="width: 200px"
-        class="form-control"
-        type="text"
-        [(ngModel)]="searchTxt"
-      /> -->
-      <!-- 22222222222222222222 -->
-      <!-- <textarea
-      style="display: flex;flex-direction:column;justify-content: center;align-items: center
-      ;text-align: left;"
-        placeholder="Enter your queries here..."
-        type="text"
-        [(ngModel)]="searchTxt"
-        class="form-control bcg"
-        rows="1"
-      > -->
+  <ul class="list-group" style="margin-left: -6px">
+    <li style="list-style-type: none">
       <textarea
         placeholder="Enter your queries here..."
         type="text"

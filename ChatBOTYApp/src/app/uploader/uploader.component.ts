@@ -10,14 +10,18 @@ import { HttpClient } from '@angular/common/http';
 declare var swal: any;
 //-------------- SWEET ALERT --------------------------
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-
-
 @Component({
   selector: 'app-uploader',
   templateUrl: './uploader.component.html',
   styleUrls: ['./uploader.component.scss']
 })
 export class UploaderComponent implements OnInit, OnDestroy {
+
+  //####################################################
+  //liveOrLocalUrl = 'http://localhost:3000';
+  liveOrLocalUrl = 'https://chatpdfaibot.onrender.com';
+  //####################################################
+
   docxContent!: string;  // Assuming you have the DOCX content in this variable
   docxUrl!: any;
 
@@ -34,6 +38,7 @@ export class UploaderComponent implements OnInit, OnDestroy {
     private toastr: ToastrService,
     private aiservice: AiserviceService
   ) {
+    console.log('USING URL : ' + this.liveOrLocalUrl);
   }
   pdfSrc: any;
   onFileSelected(val: any, option: any) {
@@ -105,7 +110,7 @@ export class UploaderComponent implements OnInit, OnDestroy {
           reader.onload = (e: any) => {
             const txtContent: string = e.target.result;
             // Process the DOCX content
-            console.log(txtContent);
+            //console.log(txtContent);
             //--------------------------------
             var blob = new Blob([txtContent], { type: 'text/plain' });
             var blobURL = URL.createObjectURL(blob);
@@ -570,20 +575,21 @@ export class UploaderComponent implements OnInit, OnDestroy {
       formData.append('filenameDtTm', filenameDtTm);
       //~~~~~~~~~~~~~~~~~~~~ LOCAL LIVE ~~~~~~~~~~~~~~~~~~~~~~~~
       //this.http.post('http://localhost:3000/convertDoc', formData)
-      this.http.post('https://chatpdfaibot.onrender.com/convertDoc', formData)
+      ////this.http.post('https://chatpdfaibot.onrender.com/convertDoc', formData)
+      this.http.post(this.liveOrLocalUrl + '/convertDoc', formData)
         //~~~~~~~~~~~~~~~~~~~~ LOCAL LIVE ~~~~~~~~~~~~~~~~~~~~~~~~
         .subscribe(
           async (data) => {
             console.log('File uploaded successfully.' + filenameDtTm);
             console.log(data);
             //----------------------
-            /*   console.log('uploadAndConvertDocFileMultiple DELETING FILE NAME IN SERVER : ' + file.name);
-              this.aiservice.aiServiceToDeleteFile(file.name).subscribe((data) => {
-                console.log(data);
-              },
-                (error) => {
-                  console.log(error);
-                }); */
+            console.log('uploadAndConvertDocFileMultiple DELETING FILE NAME IN SERVER : ' + file.name);
+            this.aiservice.aiServiceToDeleteFile(file.name).subscribe((data) => {
+              console.log(data);
+            },
+              (error) => {
+                console.log(error);
+              });
             //----------------------
             res('File uploaded successfully.' + filenameDtTm);
             this.loading = false;
@@ -606,7 +612,8 @@ export class UploaderComponent implements OnInit, OnDestroy {
       formData.append('filenameDtTm', filenameDtTm);
       //~~~~~~~~~~~~~~~~~~~~ LOCAL LIVE ~~~~~~~~~~~~~~~~~~~~~~~~
       ////this.http.post('http://localhost:3000/upload', formData)
-      this.http.post('https://chatpdfaibot.onrender.com/upload', formData)
+      //this.http.post('https://chatpdfaibot.onrender.com/upload', formData)
+      this.http.post(this.liveOrLocalUrl + '/upload', formData)
         //~~~~~~~~~~~~~~~~~~~~ LOCAL LIVE ~~~~~~~~~~~~~~~~~~~~~~~~
         .subscribe(
           async (data) => {

@@ -5,6 +5,12 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class AiserviceService {
+
+  //####################################################
+  //liveOrLocalUrl = 'http://localhost:3000';
+  liveOrLocalUrl = 'https://chatpdfaibot.onrender.com';
+  //####################################################
+
   //USING SUBJECT
   activatedEmitter = new Subject<boolean>();//next() --- subscribe()
 
@@ -38,8 +44,11 @@ export class AiserviceService {
       /* .get(
         'http://localhost:3000/qaurlblobMultiplepdf', { params: queryParams }
       ); */
+      /*  .get(
+         'https://chatpdfaibot.onrender.com/qaurlblobMultiplepdf', { params: queryParams }
+       ); */
       .get(
-        'https://chatpdfaibot.onrender.com/qaurlblobMultiplepdf', { params: queryParams }
+        this.liveOrLocalUrl + '/qaurlblobMultiplepdf', { params: queryParams }
       );
     //~~~~~~~~~~~~~~~~~~~~ LOCAL LIVE ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -59,8 +68,11 @@ export class AiserviceService {
       /*  .get(
          'http://localhost:3000/qaurlblobMultiplepdf', { params: queryParams }
        ); */
-      .get(
+      /* .get(
         'https://chatpdfaibot.onrender.com/qaurlblobMultiplepdf', { params: queryParams }
+      ); */
+      .get(
+        this.liveOrLocalUrl + '/qaurlblobMultiplepdf', { params: queryParams }
       );
     //~~~~~~~~~~~~~~~~~~~~ LOCAL LIVE ~~~~~~~~~~~~~~~~~~~~~~~~
   }
@@ -75,8 +87,11 @@ export class AiserviceService {
       /* .get(
         'http://localhost:3000/deletefile', { params: queryParams }
       ); */
-      .get(
+      /* .get(
         'https://chatpdfaibot.onrender.com/deletefile', { params: queryParams }
+      ); */
+      .get(
+        this.liveOrLocalUrl + '/deletefile', { params: queryParams }
       );
     //~~~~~~~~~~~~~~~~~~~~ LOCAL LIVE ~~~~~~~~~~~~~~~~~~~~~~~~
   }
