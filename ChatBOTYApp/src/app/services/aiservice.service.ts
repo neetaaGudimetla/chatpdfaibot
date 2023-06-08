@@ -34,9 +34,14 @@ export class AiserviceService {
       /*  .get(
          'http://localhost:3000/qaurlblobtestpdf', { params: queryParams }
        ); */
-      .get(
+      //~~~~~~~~~~~~~~~~~~~~ LOCAL LIVE ~~~~~~~~~~~~~~~~~~~~~~~~
+      /* .get(
         'http://localhost:3000/qaurlblobMultiplepdf', { params: queryParams }
+      ); */
+      .get(
+        'https://chatpdfaibot.onrender.com/qaurlblobMultiplepdf', { params: queryParams }
       );
+    //~~~~~~~~~~~~~~~~~~~~ LOCAL LIVE ~~~~~~~~~~~~~~~~~~~~~~~~
 
     //-----------------------------------------------
   }
@@ -48,10 +53,16 @@ export class AiserviceService {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("searchTxt", searchTxt);
     queryParams = queryParams.append("filename", filename);
+
     return this.http
+      //~~~~~~~~~~~~~~~~~~~~ LOCAL LIVE ~~~~~~~~~~~~~~~~~~~~~~~~
+      /*  .get(
+         'http://localhost:3000/qaurlblobMultiplepdf', { params: queryParams }
+       ); */
       .get(
-        'http://localhost:3000/qaurlblobMultiplepdf', { params: queryParams }
+        'https://chatpdfaibot.onrender.com/qaurlblobMultiplepdf', { params: queryParams }
       );
+    //~~~~~~~~~~~~~~~~~~~~ LOCAL LIVE ~~~~~~~~~~~~~~~~~~~~~~~~
   }
   //------------------------------------
   aiServiceToDeleteFile(filename: any) {
@@ -60,9 +71,14 @@ export class AiserviceService {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("filename", filename);
     return this.http
+      //~~~~~~~~~~~~~~~~~~~~ LOCAL LIVE ~~~~~~~~~~~~~~~~~~~~~~~~
+      /*  .get(
+         'http://localhost:3000/deletefile', { params: queryParams }
+       ); */
       .get(
-        'http://localhost:3000/deletefile', { params: queryParams }
+        'https://chatpdfaibot.onrender.com/deletefile', { params: queryParams }
       );
+    //~~~~~~~~~~~~~~~~~~~~ LOCAL LIVE ~~~~~~~~~~~~~~~~~~~~~~~~
   }
   /* ======================== THEME COLORS ================================== */
   backgroundColorChanged1: EventEmitter<string> = new EventEmitter<string>();
