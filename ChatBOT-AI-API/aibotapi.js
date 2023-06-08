@@ -451,12 +451,22 @@ async function convertTextToPDFNew(fileoriginalname, res) {
     });
 }
 //------------------------------
+async function chromiumExecutablePath() {
+    // Check if running on Render.com
+    if (process.env.RENDER) {
+        return '/usr/bin/chromium-browser';
+    }
+
+    // Use Puppeteer's bundled Chromium
+    return puppeteer.executablePath();
+}
 async function convertHtmlToPdf(html, filePath) {
     //console.log('process.env.PUPPETEER_EXECUTABLE_PATH :: ' + process.env.PUPPETEER_EXECUTABLE_PATH);
     //executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
     // executablePath: 'chromium',
     const browser = await puppeteer.launch({
-        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+        executablePath: await chromiumExecutablePath(),
+        args: ['--no-sandbox'],
         headless: true
     });
     const page = await browser.newPage();
