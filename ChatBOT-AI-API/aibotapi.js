@@ -347,8 +347,8 @@ async function runQAUrlBlobMultiplePdf(query, filename) {
 async function convertWordToPDFNew(fileoriginalname) {
 
     var parts = fileoriginalname.split('.');
-    console.log(JSON.stringify(parts));
-    console.log(parts[0]);//filename
+    console.log('convertWordToPDFNew 11111111111111 : '+JSON.stringify(parts));
+    console.log('convertWordToPDFNew 22222222222222 : '+parts[0]);//filename
 
     //const filePath = 'uploads/converted.pdf';
     //USING BEFORE - for local
@@ -362,10 +362,10 @@ async function convertWordToPDFNew(fileoriginalname) {
     ////const inputFilePath = 'uploads/' + fileoriginalname;
 
     const filePath = path.resolve('./', 'uploads', + parts[0] + '.pdf');
-    console.log('convertWordToPDFNew --- filePath ---> : ' + filePath);
+    console.log('convertWordToPDFNew 3333333333333 --- filePath ---> : ' + filePath);
 
     const inputFilePath = path.resolve('./', 'uploads', + fileoriginalname);
-    console.log('convertWordToPDFNew --- inputFilePath ---> : ' + inputFilePath);
+    console.log('convertWordToPDFNew 4444444444444 --- inputFilePath ---> : ' + inputFilePath);
 
     console.log('inputFilePath :: ' + inputFilePath);
 
