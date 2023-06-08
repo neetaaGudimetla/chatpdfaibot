@@ -9,7 +9,6 @@ import express from "express";
 import { Configuration, OpenAIApi } from "openai";
 import dotenv from 'dotenv';
 import fetch from "node-fetch";
-import PDFDocument from 'pdfkit';
 import mammoth from 'mammoth';
 import puppeteer from 'puppeteer';
 import { jsPDF } from 'jspdf';
