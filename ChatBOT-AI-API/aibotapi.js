@@ -15,6 +15,7 @@ import { jsPDF } from 'jspdf';
 import fs from 'fs';
 import multer from 'multer';
 import * as path from 'path';
+import { exec } from 'child_process';
 
 /* TO RUN
 node aibotapi.js */
@@ -465,6 +466,10 @@ async function convertHtmlToPdf(html, filePath) {
     //console.log('process.env.PUPPETEER_EXECUTABLE_PATH :: ' + process.env.PUPPETEER_EXECUTABLE_PATH);
     //executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
     // executablePath: 'chromium',
+
+    const output = exec('which google-chrome-stable').toString().trim();
+    console.log('-------- CHROME PATH -------------> ' + output);
+
     const browser = await puppeteer.launch({
         executablePath: await chromiumExecutablePath(),
         args: ['--no-sandbox'],
