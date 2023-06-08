@@ -351,8 +351,22 @@ async function convertWordToPDFNew(fileoriginalname) {
     console.log(parts[0]);//filename
 
     //const filePath = 'uploads/converted.pdf';
-    const filePath = 'uploads/' + parts[0] + '.pdf';
-    const inputFilePath = 'uploads/' + fileoriginalname;
+    //USING BEFORE - for local
+    /* const filePath = 'uploads/' + parts[0] + '.pdf';
+    const inputFilePath = 'uploads/' + fileoriginalname; */
+    //USING BEFORE - for local
+
+
+
+    ////const filePath = 'uploads/' + parts[0] + '.pdf';
+    ////const inputFilePath = 'uploads/' + fileoriginalname;
+
+    const filePath = path.resolve('./', 'uploads', + parts[0] + '.pdf');
+    console.log('convertWordToPDFNew --- filePath ---> : ' + filePath);
+
+    const inputFilePath = path.resolve('./', 'uploads', + fileoriginalname);
+    console.log('convertWordToPDFNew --- inputFilePath ---> : ' + inputFilePath);
+
     console.log('inputFilePath :: ' + inputFilePath);
 
     mammoth.convertToHtml({ path: inputFilePath })
@@ -393,8 +407,19 @@ async function convertTextToPDFNew(fileoriginalname, res) {
     console.log(parts[0]);//filename
 
     //const filePath = 'uploads/converted.pdf';
-    const filePath = 'uploads/' + parts[0] + '.pdf';
-    const inputFilePath = 'uploads/' + fileoriginalname;
+    //USING THIS FOR LOCAL
+    /*  const filePath = 'uploads/' + parts[0] + '.pdf';
+     const inputFilePath = 'uploads/' + fileoriginalname; */
+    //USING THIS FOR LOCAL
+
+    const filePath = path.resolve('./', 'uploads', + parts[0] + '.pdf');
+    console.log('convertWordToPDFNew --- filePath ---> : ' + filePath);
+
+    const inputFilePath = path.resolve('./', 'uploads', + fileoriginalname);
+    console.log('convertWordToPDFNew --- inputFilePath ---> : ' + inputFilePath);
+
+
+
     console.log('TEXT--> inputFilePath :: ' + inputFilePath);
 
     //const inputFilePath = './input.txt';

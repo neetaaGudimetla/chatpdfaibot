@@ -568,7 +568,10 @@ export class UploaderComponent implements OnInit, OnDestroy {
       const formData = new FormData();
       formData.append('file', file);
       formData.append('filenameDtTm', filenameDtTm);
-      this.http.post('http://localhost:3000/convertDoc', formData)
+      //~~~~~~~~~~~~~~~~~~~~ LOCAL LIVE ~~~~~~~~~~~~~~~~~~~~~~~~
+      //this.http.post('http://localhost:3000/convertDoc', formData)
+      this.http.post('https://chatpdfaibot.onrender.com/convertDoc', formData)
+        //~~~~~~~~~~~~~~~~~~~~ LOCAL LIVE ~~~~~~~~~~~~~~~~~~~~~~~~
         .subscribe(
           async (data) => {
             console.log('File uploaded successfully.' + filenameDtTm);
@@ -601,8 +604,10 @@ export class UploaderComponent implements OnInit, OnDestroy {
       const formData = new FormData();
       formData.append('file', file);
       formData.append('filenameDtTm', filenameDtTm);
+      //~~~~~~~~~~~~~~~~~~~~ LOCAL LIVE ~~~~~~~~~~~~~~~~~~~~~~~~
       ////this.http.post('http://localhost:3000/upload', formData)
       this.http.post('https://chatpdfaibot.onrender.com/upload', formData)
+        //~~~~~~~~~~~~~~~~~~~~ LOCAL LIVE ~~~~~~~~~~~~~~~~~~~~~~~~
         .subscribe(
           async (data) => {
             console.log('File uploaded successfully.' + filenameDtTm);
