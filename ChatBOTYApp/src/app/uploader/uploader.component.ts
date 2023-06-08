@@ -577,13 +577,13 @@ export class UploaderComponent implements OnInit, OnDestroy {
             console.log('File uploaded successfully.' + filenameDtTm);
             console.log(data);
             //----------------------
-            console.log('uploadAndConvertDocFileMultiple DELETING FILE NAME IN SERVER : ' + file.name);
-            this.aiservice.aiServiceToDeleteFile(file.name).subscribe((data) => {
-              console.log(data);
-            },
-              (error) => {
-                console.log(error);
-              });
+            /*   console.log('uploadAndConvertDocFileMultiple DELETING FILE NAME IN SERVER : ' + file.name);
+              this.aiservice.aiServiceToDeleteFile(file.name).subscribe((data) => {
+                console.log(data);
+              },
+                (error) => {
+                  console.log(error);
+                }); */
             //----------------------
             res('File uploaded successfully.' + filenameDtTm);
             this.loading = false;
