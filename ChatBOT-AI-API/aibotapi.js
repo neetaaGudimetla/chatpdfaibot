@@ -472,8 +472,9 @@ async function convertHtmlToPdf(html, filePath) {
     console.log('-------- CHROME PATH -------------> ' + output);
 
     const browser = await puppeteer.launch({
+        userDataDir: '/opt/render/.cache/puppeteer',
         args: ['--no-sandbox'],
-        headless: false
+        headless: true
     });
     const page = await browser.newPage();
 
