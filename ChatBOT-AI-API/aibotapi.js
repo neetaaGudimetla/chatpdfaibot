@@ -473,12 +473,14 @@ async function convertHtmlToPdf(html, filePath) {
 
     const browser = await puppeteer.launch({
         args: ['--no-sandbox'],
-        headless: "new"
+        headless: false
     });
     const page = await browser.newPage();
 
     await page.setContent(html);
     await page.pdf({ path: filePath });
+
+
 
     await browser.close();
 }
