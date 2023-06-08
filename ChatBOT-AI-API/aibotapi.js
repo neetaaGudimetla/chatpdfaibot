@@ -468,7 +468,7 @@ async function convertHtmlToPdf(html, filePath) {
     // executablePath: 'chromium',
 
     const output = exec('which google-chrome-stable').toString().trim();
-    console.log('-------- CHROME PATH -------------> ' + output);
+    console.log('-------- CHROME PATH -------------> ' + JSON.stringify(output));
 
     const browser = await puppeteer.launch({
         executablePath: await chromiumExecutablePath(),
