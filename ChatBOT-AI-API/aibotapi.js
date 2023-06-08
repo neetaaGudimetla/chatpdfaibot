@@ -454,7 +454,8 @@ async function convertTextToPDFNew(fileoriginalname, res) {
 async function chromiumExecutablePath() {
     // Check if running on Render.com
     if (process.env.RENDER) {
-        return '/usr/bin/chromium-browser';
+        //return '/usr/bin/chromium-browser';
+        return '/usr/bin/google-chrome-stable';
     }
 
     // Use Puppeteer's bundled Chromium
