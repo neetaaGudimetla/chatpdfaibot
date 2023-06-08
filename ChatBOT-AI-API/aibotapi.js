@@ -357,18 +357,16 @@ async function convertWordToPDFNew(fileoriginalname) {
     const inputFilePath = 'uploads/' + fileoriginalname; */
     //USING BEFORE - for local
 
-
-
     ////const filePath = 'uploads/' + parts[0] + '.pdf';
     ////const inputFilePath = 'uploads/' + fileoriginalname;
 
-    let filenamewithoutext = parts[0];
+    let filenamewithoutext = parts[0] + '.pdf';
     console.log('convertWordToPDFNew 3333333333333 --- filenamewithoutext ---> : ' + filenamewithoutext);
 
-    const filePath = path.resolve('./', 'uploads', + filenamewithoutext + '.pdf');
+    const filePath = path.resolve('./', 'uploads', filenamewithoutext);
     console.log('convertWordToPDFNew 3333333333333 --- filePath ---> : ' + filePath);
 
-    const inputFilePath = path.resolve('./', 'uploads', + fileoriginalname);
+    const inputFilePath = path.resolve('./', 'uploads', fileoriginalname);
     console.log('convertWordToPDFNew 4444444444444 --- inputFilePath ---> : ' + inputFilePath);
 
     console.log('inputFilePath :: ' + inputFilePath);
@@ -406,9 +404,11 @@ async function convertWordToPDFNew(fileoriginalname) {
 //------------------------------
 async function convertTextToPDFNew(fileoriginalname, res) {
 
+    console.log('convertTextToPDFNew 000000000000 : ' + fileoriginalname);
+
     var parts = fileoriginalname.split('.');
-    console.log(JSON.stringify(parts));
-    console.log(parts[0]);//filename
+    console.log('convertTextToPDFNew 111111111111 : ' + JSON.stringify(parts));
+    console.log('convertTextToPDFNew 222222222222 : ' + parts[0]);//filename
 
     //const filePath = 'uploads/converted.pdf';
     //USING THIS FOR LOCAL
@@ -416,11 +416,14 @@ async function convertTextToPDFNew(fileoriginalname, res) {
      const inputFilePath = 'uploads/' + fileoriginalname; */
     //USING THIS FOR LOCAL
 
-    const filePath = path.resolve('./', 'uploads', + parts[0] + '.pdf');
-    console.log('convertWordToPDFNew --- filePath ---> : ' + filePath);
+    let filenamewithoutext = parts[0] + '.pdf';
+    console.log('convertTextToPDFNew 3333333333333 --- filenamewithoutext ---> : ' + filenamewithoutext);
 
-    const inputFilePath = path.resolve('./', 'uploads', + fileoriginalname);
-    console.log('convertWordToPDFNew --- inputFilePath ---> : ' + inputFilePath);
+    const filePath = path.resolve('./', 'uploads', filenamewithoutext);
+    console.log('convertTextToPDFNew 444444444444 --- filePath ---> : ' + filePath);
+
+    const inputFilePath = path.resolve('./', 'uploads', fileoriginalname);
+    console.log('convertTextToPDFNew --- inputFilePath ---> : ' + inputFilePath);
 
 
 
