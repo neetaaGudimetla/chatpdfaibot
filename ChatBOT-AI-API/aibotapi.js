@@ -452,9 +452,10 @@ async function convertTextToPDFNew(fileoriginalname, res) {
 }
 //------------------------------
 async function convertHtmlToPdf(html, filePath) {
-    console.log('process.env.PUPPETEER_EXECUTABLE_PATH :: ' + process.env.PUPPETEER_EXECUTABLE_PATH);
+    //console.log('process.env.PUPPETEER_EXECUTABLE_PATH :: ' + process.env.PUPPETEER_EXECUTABLE_PATH);
+    //executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
     const browser = await puppeteer.launch({
-        executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
+        executablePath: 'chromium',
         headless: true
     });
     const page = await browser.newPage();
