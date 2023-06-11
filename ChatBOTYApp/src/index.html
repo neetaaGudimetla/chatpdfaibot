@@ -11,15 +11,24 @@
 >
   <head>
     <meta charset="utf-8" />
-    <title>Base</title>
+    <title>Chat BOT</title>
     <base href="/" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+    <!--  <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+
     <link href="assets/css/animate.css" rel="stylesheet" />
     <link href="assets/css/stagger.css" rel="stylesheet" />
     <link href="assets/css/testx.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/sweetalert2.css" />
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css"
@@ -52,6 +61,7 @@
     <style>
       html,
       body {
+        overflow-x: hidden;
         /* ======================== THEME COLORS ================================== */
         background: linear-gradient(
           to right,
@@ -72,9 +82,15 @@
       <app-root></app-root>
     </div>
   </body> -->
-  <body>
-    <div class="content">
+  <body style="overflow-x: hidden">
+    <div class="content1" style="overflow-x: hidden">
       <app-root></app-root>
     </div>
   </body>
+  <style>
+    div1 {
+      border: 1px solid green;
+    }
+  </style>
+  <script src="assets/js/bootstrap.min.js"></script>
 </html>

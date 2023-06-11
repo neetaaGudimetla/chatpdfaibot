@@ -19,7 +19,7 @@ export class UploaderComponent implements OnInit, OnDestroy {
 
   //####################################################
   //liveOrLocalUrl = 'http://localhost:3000';
-  liveOrLocalUrl = 'https://chatpdfaibot.onrender.com';
+  liveOrLocalUrl = 'https://chatbotaiapi.onrender.com';
   //####################################################
 
   docxContent!: string;  // Assuming you have the DOCX content in this variable
@@ -147,7 +147,10 @@ export class UploaderComponent implements OnInit, OnDestroy {
     this.backgroundColor2 = '#7eea8a';
   }
   ngOnDestroy(): void {
-    this.activatedSub.unsubscribe();
+    if (this.activatedSub === undefined) { } else {
+      this.activatedSub.unsubscribe();
+    }
+
   }
 
   toggleHover(event: boolean) {
@@ -306,13 +309,7 @@ export class UploaderComponent implements OnInit, OnDestroy {
     this.displayAttachResult = this.displayResult;
     console.log("final");
     console.log('this.displayAttachResult :: ' + this.displayAttachResult);
-    //------------------------
-    /* if (this.printflg) {
-      const collection = document.getElementsByClassName("card-text");
-      collection[0].innerHTML = "";
-      this.typeText(collection[0], this.displayAttachResult);
-    } */
-    //------------------------
+
   }
 
 
@@ -443,6 +440,12 @@ export class UploaderComponent implements OnInit, OnDestroy {
   }
   //----------------------------- MULTIPLE FILES UPLOADING -----------------------
   async onDropMulti(files: any) {
+    this.searchTxt = '';
+    //--------- CLEAR displayAttachResult ------------
+    const collection = document.getElementsByClassName("card-text");
+    collection[0].innerHTML = "";
+    this.typeText(collection[0], '');
+    //--------- CLEAR displayAttachResult ------------
     this.options = [];
     console.log(files.length);
     if (files.length === 0) {
@@ -458,7 +461,7 @@ export class UploaderComponent implements OnInit, OnDestroy {
       var extension = parts.pop();
       let ext = extension.toLowerCase();
       console.log(ext);
-      if (ext == 'pdf' || ext == 'docx' || ext == 'txt') {
+      if (ext == 'pdf' || ext == 'doc' || ext == 'docx' || ext == 'txt') {
       } else {
         this.errorToastMsg('Please select only PDF/DOCX/TXT files.');
         return;
@@ -660,6 +663,11 @@ export class UploaderComponent implements OnInit, OnDestroy {
       this.optionHighlight = -1;
       this.warningToastMsg(this.options[i].name + ' - [ Processing... ]');
       this.displayAttachResult = '';
+      //--------- CLEAR displayAttachResult ------------
+      const collection = document.getElementsByClassName("card-text");
+      collection[0].innerHTML = "";
+      this.typeText(collection[0], '');
+      //--------- CLEAR displayAttachResult ------------
       //CHECK IF DOCX OR PDF - this.options[i].name
       let filenamme = this.options[i].name;
       var parts = filenamme.split('.');
@@ -671,10 +679,14 @@ export class UploaderComponent implements OnInit, OnDestroy {
         this.displayResult = await this.mockPromisetestpdf(this.options[i].name, this.options[i].value, this.searchTxt);
       } else if (ext == 'doc' || ext == 'docx' || ext == 'txt') {
         let filenammex = parts[0] + '.pdf';
-        console.log(filenammex);
+        console.log('filenammex >>> ' + filenammex);
         this.displayResult = await this.mockPromisetestpdf(filenammex, this.options[i].value, this.searchTxt);
-      }
+        //FOR TESTING
+        ////this.displayResult = `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.`;
+        //-----------------
 
+        //-----------------
+      }
 
       console.log(this.displayResult);
       this.displayResult = this.displayResult + '\n\n';
@@ -683,13 +695,13 @@ export class UploaderComponent implements OnInit, OnDestroy {
     this.displayAttachResult = this.displayResult;
     console.log("final");
     console.log('this.displayAttachResult :: ' + this.displayAttachResult);
-    //------------------------
+    //------------------------TEXT DISPLAY SETTING PART LIKE OPEN AI ----------------
     if (this.printflg) {
       const collection = document.getElementsByClassName("card-text");
       collection[0].innerHTML = "";
       this.typeText(collection[0], this.displayAttachResult);
     }
-    //------------------------
+    //------------------------TEXT DISPLAY SETTING PART LIKE OPEN AI ----------------
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   }
 

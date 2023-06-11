@@ -1,2 +1,53 @@
-<app-uploader></app-uploader>
-<app-help-support></app-help-support>
+<nav
+  class="navbar navbar-default fixed-top"
+  style="background-image: linear-gradient(to right, #7eea8a, #e8e9ec)"
+>
+  <a class="navbar-brand" href="#">
+    <div class="loader">
+      <div class="loader-inner box1"></div>
+      <div class="loader-inner box2"></div>
+      <div class="loader-inner box3"></div>
+    </div>
+    <span
+      style="
+        color: navy;
+        margin-left: 10px;
+        font-size: 2.25rem;
+        text-shadow: 2px 2px 8px #fb5656;
+        font-family: cursive;
+      "
+      >Chat BOT</span
+    >
+  </a>
+
+  <div class="container">
+    <div class="navbar-header">
+      <button
+        type="button"
+        class="navbar-toggle collapsed"
+        data-toggle="collapse"
+        data-target="#bs-example-navbar-collapse-1"
+        aria-expanded="false"
+      >
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-right navbar-nav" style="font-size: 2rem">
+        <li><a [routerLink]="['Home']">Home</a></li>
+        <li><a [routerLink]="['Purchase']">Pricing</a></li>
+        <li><a [routerLink]="['Support']">About Us</a></li>
+        <li><a [routerLink]="['Contactus']">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- /.container-fluid -->
+</nav>
+<div class="content">
+  <router-outlet></router-outlet>
+  <!--  <app-uploader></app-uploader>
+  <app-help-support></app-help-support> -->
+</div>

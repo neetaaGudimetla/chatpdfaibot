@@ -21,14 +21,29 @@ import { ToastrModule } from 'ngx-toastr';
 import { UploaderComponent } from './uploader/uploader.component';
 import { HelpSupportComponent } from './help-support/help-support.component';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { PurchaseComponent } from './purchase/purchase.component';
+import { SupportComponent } from './support/support.component';
+import { ContactusComponent } from './contactus/contactus.component';
 
+import { RouterModule, Routes } from '@angular/router';
+const appRoutes: Routes = [
+  { path: 'Home', component: UploaderComponent },
+  { path: 'Purchase', component: PurchaseComponent },
+  { path: 'Support', component: SupportComponent },
+  { path: 'Contactus', component: ContactusComponent },
+  { path: '', redirectTo: 'Home', pathMatch: 'full' },
+  { path: '**', component: UploaderComponent },
+];
 @NgModule({
   declarations: [
     AppComponent,
     DropzoneDirective,
     FilterPipe,
     UploaderComponent,
-    HelpSupportComponent],
+    HelpSupportComponent,
+    PurchaseComponent,
+    SupportComponent,
+    ContactusComponent],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
@@ -43,7 +58,7 @@ import { ColorPickerModule } from 'ngx-color-picker';
       preventDuplicates: false,
     }), // ToastrModule added
     ColorPickerModule,
-
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]

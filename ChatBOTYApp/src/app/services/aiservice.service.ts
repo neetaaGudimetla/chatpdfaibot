@@ -8,7 +8,8 @@ export class AiserviceService {
 
   //####################################################
   //liveOrLocalUrl = 'http://localhost:3000';
-  liveOrLocalUrl = 'https://chatpdfaibot.onrender.com';
+  liveOrLocalUrl = 'https://chatbotaiapi.onrender.com';
+
   //####################################################
 
   //USING SUBJECT
